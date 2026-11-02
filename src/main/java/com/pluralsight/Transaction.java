@@ -19,12 +19,12 @@ public class Transaction {
     }
 
     // Parameterized Constructor
-    public Transaction(LocalDate localDate, LocalTime localTime, String description, double amount, String vendor) {
+    public Transaction(LocalDate localDate, LocalTime localTime, String description, String vendor, double amount) {
         this.localDate = localDate;
         this.localTime = localTime;
         this.description = description;
-        this.amount = amount;
         this.vendor = vendor;
+        this.amount = amount;
     }
 
 
@@ -75,4 +75,11 @@ public class Transaction {
         return String.format("%s | %s | %s | %s | $%.2f",
                 localDate, localTime, description, vendor, amount);
     }
+
+    // to CsvString() method formats transaction information for saving to transactions.csv
+    public String toCsvString() {
+        return String.format("%s|%s|%s|%s|%.2f",
+                localDate, localTime, description, vendor, amount );
+    }
+
 }
