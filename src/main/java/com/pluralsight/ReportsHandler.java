@@ -31,27 +31,28 @@ public class ReportsHandler {
             switch (currentChoice) {
                 case "1":
                     // displayMonthToDate() placeholder
-                    System.out.println("PLACEHOLDER for displayMonthToDate()");
+                    displayMonthToDate(transactions);
                     break;
                 case "2":
                     // displayPreviousMonth() placeholder
-                    System.out.println("PLACEHOLDER for displayPreviousMonth()");
+                    displayPreviousMonth(transactions);
                     break;
                 case "3":
                     // displayYearToDate() placeholder
-                    System.out.println("PLACEHOLDER for displayYearToDate()");
+                    displayYearToDate(transactions);
                     break;
                 case "4":
                     // displayPreviousYear() placeholder
-                    System.out.println("PLACEHOLDER for displayPreviousYear()");
+                    displayPreviousYear(transactions);
                     break;
                 case "5":
                     // searchTransactionsByVendor() placeholder
-                    System.out.println("PLACEHOLDER for searchTransactionsByVendor()");
+                    String vendor = read.nextLine().trim();
+                    searchTransactionsByVendor(transactions, vendor);
                     break;
                 case "6":
                     // customTransactionSearch() bonus implementation placeholder
-                    System.out.println("PLACEHOLDER for customTransactionSearch()");
+                    System.out.println("PLACEHOLDER for customTransactionSearch()"); // BONUS TO DO
                 case "0":
                     return; // Go back to the ledger page
                 default:

@@ -27,20 +27,20 @@ public class LedgerHandler {
             // Calls the correct method based on user's menu selection
             switch (currentChoice.toUpperCase()) {
                 case "A":
-                    // displayAll() placeholder
-                    System.out.println("PLACEHOLDER for displayAll()");
+                    // displayAll()
+                    displayAll(transactions);
                     break;
                 case "D":
-                    // displayDeposits() placeholder
-                    System.out.println("PLACEHOLDER for displayDeposits()");
+                    // displayDeposits()
+                    displayDeposits(transactions);
                     break;
                 case "P":
-                    // displayPayments() placeholder
-                    System.out.println("PLACEHOLDER for displayPayments()");
+                    // displayPayments()
+                    displayPayments(transactions);
                     break;
                 case "R":
-                    // displayReports() placeholder
-                    System.out.println("PLACEHOLDER for displayReports()");
+                    // displayReports()
+                    ReportsHandler.displayReportsMenu(transactions, read);
                     break;
                 case "H":
                     return;

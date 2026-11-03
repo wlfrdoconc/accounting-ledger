@@ -33,16 +33,16 @@ public class Main {
             // Calls the correct method based on the user's menu selection
             switch (currentChoice.toUpperCase()) { // Converts all user input to uppercase
                 case "D":
-                    // addDeposit() placeholder
-                    System.out.println("PLACEHOLDER FOR addDeposit()");
+                    // addDeposit()
+                    addDeposit(transactions, read);
                     break;
                 case "P":
-                    // makePayment() placeholder
-                    System.out.println("PLACEHOLDER FOR makePayment()");
+                    // makePayment()
+                    makePayment(transactions, read);
                 case "L":
                     // displayLedgerMenu() placeholder -> call from LedgerHandler class
                     // LedgerHandler.displayLedgerMenu(transactions, read)
-                    System.out.println("PLACEHOLDER FOR displayLedgerMenu()");
+                    LedgerHandler.displayLedgerMenu(transactions, read);
                 case "X":
                     return;
                 default:
