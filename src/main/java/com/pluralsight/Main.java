@@ -86,13 +86,14 @@ public class Main {
         // Create a new transaction object that stores the entered transactions
         Transaction enteredTransaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
 
-        // Add the entered transaction to the transactions ArrayList
-        transactions.add(enteredTransaction);
-
-        // Call TransactionFileManager's saveTransaction() method to add the transaction to the list
-        TransactionFileManager.saveTransaction(enteredTransaction);
-
-        System.out.println("Deposit added successfully!");
+        // If statement to check whether the transaction was successfully saved before add it
+        if (TransactionFileManager.saveTransaction(enteredTransaction)) { // Saves the transaction to the transactions.csv file
+            // Add the entered transaction to the transactions ArrayList
+            transactions.add(enteredTransaction);
+            System.out.println("Deposit added successfully");
+        } else {
+            System.out.println("Failed to save deposit.");
+        }
 
     }
 
@@ -100,5 +101,49 @@ public class Main {
     public static void makePayment(ArrayList<Transaction> transactions, Scanner read) {
         System.out.println();
         System.out.println("==== Make a Payment ====");
+        System.out.print("Enter description: ");
+        String description = read.nextLine();
+        System.out.print("Enter vendor: ");
+        String vendor = read.nextLine();
+
+        // Empty amount variable to store user input and for validation
+        double amount = 0;
+        boolean isValid = false;
+
+        // Added while loop and try catch for extra error handling when entering deposit amounts
+        while (!isValid) {
+            System.out.print("Enter deposit amount: ");
+            try {
+                amount = Double.parseDouble(read.nextLine());
+
+                // If statement to make sure entered amount is a valid number and greater than 0
+                if (Double.isFinite(amount) && amount > 0) {
+                    isValid = true;
+                }
+                else  {
+                    System.out.println("Entered amount must be greater than zero");
+                }
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Please enter a number");
+            }
+        }
+
+        // Decrement the amount value
+        amount = -amount;
+
+        // Create a new transaction object that stores the entered transactions
+        Transaction enteredTransaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
+
+        // If statement to check whether the transaction was successfully saved before add it
+        if (TransactionFileManager.saveTransaction(enteredTransaction)) { // Saves the transaction to the transactions.csv file
+            // Add the entered transaction to the transactions ArrayList
+            transactions.add(enteredTransaction);
+            System.out.println("Payment added successfully");
+        } else {
+            System.out.println("Failed to save payment.");
+        }
+
+
     }
 }

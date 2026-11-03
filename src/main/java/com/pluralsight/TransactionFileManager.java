@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class TransactionFileManager {
 
     // Saves the user's entered transaction to transactions.csv
-    public static void saveTransaction(Transaction transaction) {
+    public static boolean saveTransaction(Transaction transaction) {
 
         // Try/Catch to handle validation
         try (BufferedWriter writer = new BufferedWriter(
@@ -24,7 +24,10 @@ public class TransactionFileManager {
         }
         catch (IOException e) {
             System.out.println("Error saving transaction: " + e.getMessage());
+            return false;
         }
+
+        return true;
     }
 
     // ArrayList to read the users transactions and create Transaction objects
