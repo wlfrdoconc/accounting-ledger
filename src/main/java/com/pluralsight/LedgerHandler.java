@@ -1,9 +1,12 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class LedgerHandler {
 
     // Display the ledger menu
-    public static void displayLedgerMenu() {
+    public static void displayLedgerMenu(ArrayList<Transaction> transactions, Scanner scanner) {
 
     }
 
