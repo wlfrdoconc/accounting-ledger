@@ -52,21 +52,57 @@ public class LedgerHandler {
 
     // Display all entries method
     public static void displayAll(ArrayList<Transaction> transactions) {
+        System.out.println();
+        System.out.println("==== All Transactions ====");
 
+        // Checks if there are any transactions
+        if (transactions.isEmpty()) {
+            System.out.println("Transactions not found");
+            return;
+        }
+
+        // Loops through the list of transactions
+        for (Transaction transaction: transactions) {
+            System.out.println(transaction);
+        }
     }
 
     // Display deposits method
     public static void displayDeposits(ArrayList<Transaction> transactions) {
+        System.out.println();
+        System.out.println("==== All Deposits ====");
+
+        // Checks if there are any transactions
+        if (transactions.isEmpty()) {
+            System.out.println("Transactions not found");
+            return;
+        }
+
+        // Loops through the list of transactions
+        for (Transaction transaction: transactions) {
+            if (transaction.getAmount() > 0) { // Only displays transactions with positive amounts
+                System.out.println(transaction);
+            }
+        }
 
     }
 
     // Display payments method
     public static void displayPayments(ArrayList<Transaction> transactions) {
+        System.out.println();
+        System.out.println("==== All Payments ====");
 
-    }
+        // Checks if there are any transactions
+        if (transactions.isEmpty()) {
+            System.out.println("Transactions not found");
+            return;
+        }
 
-    // Display reports method
-    public static void displayReports(ArrayList<Transaction> transactions) {
-
+        // Loops through the list of transactions
+        for (Transaction transaction: transactions) {
+            if (transaction.getAmount() < 0) {
+                System.out.println(transaction);
+            }
+        }
     }
 }

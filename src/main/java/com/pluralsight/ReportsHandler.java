@@ -61,27 +61,38 @@ public class ReportsHandler {
 
     // Display transactions from month to date method
     public static void displayMonthToDate(ArrayList<Transaction> transactions) {
+        System.out.println();
+        System.out.println("==== Display Month to Date's Transactions ====");
+
+
+
+
 
     }
 
     // Display transactions from the previous month method
     public static void displayPreviousMonth(ArrayList<Transaction> transactions) {
-
+        System.out.println();
+        System.out.println("==== Display Previous Month's Transactions ====");
     }
 
     // Display transactions from year to date method
     public static void displayYearToDate(ArrayList<Transaction> transactions) {
-
+        System.out.println();
+        System.out.println("==== Display Year to Date's Transactions ====");
     }
 
     // Display transactions from the previous year method
     public static void displayPreviousYear(ArrayList<Transaction> transactions) {
+        System.out.println();
+        System.out.println("==== Display the Previous Year's Transactions ====");
 
     }
 
     // Search by vendor method
     public static void searchTransactionsByVendor(ArrayList<Transaction> transactions) {
-
+        System.out.println();
+        System.out.println("==== Search Transactions By Vendor ====");
     }
 
 }
