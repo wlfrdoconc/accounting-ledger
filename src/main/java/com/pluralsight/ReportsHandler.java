@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class ReportsHandler {
 
     // Reports menu method
-    public static void displayReportsMenu(ArrayList<Transaction> transactions, Scanner scanner) {
+    public static void displayReportsMenu(ArrayList<Transaction> transactions, Scanner read) {
 
         // Empty string to store the user's current choice
         String currentChoice = "";
@@ -23,7 +23,7 @@ public class ReportsHandler {
             System.out.println("6) Custom search"); // BONUS DO LATER
 
             // Reads the user's entered selection
-            currentChoice = scanner.nextLine().trim(); // Removes any leading or trailing spaces
+            currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
 
             // Calls the corresponding method based on the user's menu selection
 
@@ -60,27 +60,27 @@ public class ReportsHandler {
     }
 
     // Display transactions from month to date method
-    public static void displayMonthToDate() {
+    public static void displayMonthToDate(ArrayList<Transaction> transactions) {
 
     }
 
     // Display transactions from the previous month method
-    public static void displayPreviousMonth() {
+    public static void displayPreviousMonth(ArrayList<Transaction> transactions) {
 
     }
 
     // Display transactions from year to date method
-    public static void displayYearToDate() {
+    public static void displayYearToDate(ArrayList<Transaction> transactions) {
 
     }
 
     // Display transactions from the previous year method
-    public static void displayPreviousYear() {
+    public static void displayPreviousYear(ArrayList<Transaction> transactions) {
 
     }
 
     // Search by vendor method
-    public static void searchTransactionsByVendor() {
+    public static void searchTransactionsByVendor(ArrayList<Transaction> transactions) {
 
     }
 

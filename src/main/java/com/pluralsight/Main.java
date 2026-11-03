@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Main {
@@ -11,7 +13,7 @@ public class Main {
 
     // Displays the main home screen
     // homeScreen passes loaded transactions from transactions.csv and scanner method
-    public static void homeScreen(ArrayList<Transaction> transactions, Scanner scanner) {
+    public static void homeScreen(ArrayList<Transaction> transactions, Scanner read) {
 
         // Empty string to store the user's current choice
         String currentChoice = "";
@@ -26,7 +28,7 @@ public class Main {
             System.out.println("X) Exit the Application");
 
             // Read's the user's entered selection
-            currentChoice = scanner.nextLine().trim(); // Removes any trailing or leading spaces
+            currentChoice = read.nextLine().trim(); // Removes any trailing or leading spaces
 
             // Calls the correct method based on the user's menu selection
             switch (currentChoice.toUpperCase()) { // Converts all user input to uppercase
@@ -39,26 +41,45 @@ public class Main {
                     System.out.println("PLACEHOLDER FOR makePayment()");
                 case "L":
                     // displayLedgerMenu() placeholder -> call from LedgerHandler class
-                    // LedgerHandler.displayLedgerMenu(transactions, scanner)
+                    // LedgerHandler.displayLedgerMenu(transactions, read)
                     System.out.println("PLACEHOLDER FOR displayLedgerMenu()");
                 case "X":
                     return;
                 default:
                     System.out.println("Please enter D, P, L, or X.");
             }
-
         }
-
-
     }
 
     // Lets the user make a deposit
-    public static void addDeposit() {
+    public static void addDeposit(ArrayList<Transaction> transactions, Scanner read) {
+        System.out.println();
+        System.out.println("==== Add Deposit ====");
+        System.out.println("Enter description: ");
+        String description = read.nextLine();
+        System.out.println("Enter vendor: ");
+        String vendor = read.nextLine();
+        System.out.println("Enter deposit amount: ");
+        double amount = Double.parseDouble(read.nextLine()); // Consider using try catch for throwing NumberFormatException
+
+        // Create a new transaction object that stores the entered transactions
+        Transaction enteredTransaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
+
+        // Add the entered transaction to the transactions ArrayList
+        transactions.add(enteredTransaction);
+
+        // Call TransactionFileManager's saveTransaction() method to add the transaction to the list
+        TransactionFileManager.saveTransaction(enteredTransaction);
+
+        System.out.println("Deposit added successfully!");
+
+
 
     }
 
     // Lets the user make a payment
-    public static void makePayment() {
-
+    public static void makePayment(ArrayList<Transaction> transactions, Scanner read) {
+        System.out.println();
+        System.out.println("==== Make a Payment ====");
     }
 }

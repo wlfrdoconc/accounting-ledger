@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class LedgerHandler {
 
     // Display the ledger menu
-    public static void displayLedgerMenu(ArrayList<Transaction> transactions, Scanner scanner) {
+    public static void displayLedgerMenu(ArrayList<Transaction> transactions, Scanner read) {
 
         // Empty string to store the user's current choice
         String currentChoice = "";
@@ -22,7 +22,7 @@ public class LedgerHandler {
             System.out.println("H) Return to the home screen");
 
             // Read the user's entered selection
-            currentChoice = scanner.nextLine().trim(); // Removes any leading or trailing spaces
+            currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
 
             // Calls the correct method based on user's menu selection
             switch (currentChoice.toUpperCase()) {
@@ -51,22 +51,22 @@ public class LedgerHandler {
     }
 
     // Display all entries method
-    public static void displayAll() {
+    public static void displayAll(ArrayList<Transaction> transactions) {
 
     }
 
     // Display deposits method
-    public static void displayDeposits() {
+    public static void displayDeposits(ArrayList<Transaction> transactions) {
 
     }
 
     // Display payments method
-    public static void displayPayments() {
+    public static void displayPayments(ArrayList<Transaction> transactions) {
 
     }
 
     // Display reports method
-    public static void displayReports() {
+    public static void displayReports(ArrayList<Transaction> transactions) {
 
     }
 }
