@@ -55,12 +55,33 @@ public class Main {
     public static void addDeposit(ArrayList<Transaction> transactions, Scanner read) {
         System.out.println();
         System.out.println("==== Add Deposit ====");
-        System.out.println("Enter description: ");
+        System.out.print("Enter description: ");
         String description = read.nextLine();
-        System.out.println("Enter vendor: ");
+        System.out.print("Enter vendor: ");
         String vendor = read.nextLine();
-        System.out.println("Enter deposit amount: ");
-        double amount = Double.parseDouble(read.nextLine()); // Consider using try catch for throwing NumberFormatException
+
+        // Empty amount variable to store user input and for validation
+        double amount = 0;
+        boolean isValid = false;
+
+        // Added while loop and try catch for extra error handling when entering deposit amounts
+        while (!isValid) {
+            System.out.print("Enter deposit amount: ");
+            try {
+                amount = Double.parseDouble(read.nextLine());
+
+                // If statement to make sure entered amount is a valid number and greater than 0
+                if (Double.isFinite(amount) && amount > 0) {
+                    isValid = true;
+                }
+                else  {
+                    System.out.println("Entered amount must be greater than zero");
+                }
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Invalid amount. Please enter a number");
+            }
+        }
 
         // Create a new transaction object that stores the entered transactions
         Transaction enteredTransaction = new Transaction(LocalDate.now(), LocalTime.now(), description, vendor, amount);
@@ -72,8 +93,6 @@ public class Main {
         TransactionFileManager.saveTransaction(enteredTransaction);
 
         System.out.println("Deposit added successfully!");
-
-
 
     }
 
