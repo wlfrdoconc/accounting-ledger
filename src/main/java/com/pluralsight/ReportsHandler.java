@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,22 +65,67 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Display Month to Date's Transactions ====");
 
+        // Get today's date
+        LocalDate today = LocalDate.now();
 
+        // Loops through the list of transactions
+        for (Transaction transaction: transactions) {
 
+            // Gets the date of the current transaction
+            LocalDate transactionDate = transaction.getLocalDate();
 
-
+            // Check if the transaction is within the current month and year, excluding future dates
+            if (transactionDate.getDayOfMonth() == today.getMonthValue() && transactionDate.getYear() == today.getYear() && !transactionDate.isAfter(today)) {
+                System.out.println(transaction);
+            }
+        }
     }
 
     // Display transactions from the previous month method
     public static void displayPreviousMonth(ArrayList<Transaction> transactions) {
         System.out.println();
         System.out.println("==== Display Previous Month's Transactions ====");
+
+        // Get the previous month's transactions
+        LocalDate previousMonth = LocalDate.now().minusMonths(1);
+
+        // Loops through the list of transactions
+        for (Transaction transaction : transactions) {
+
+            // Gets a transactions date
+            LocalDate transactionDate = transaction.getLocalDate();
+
+            if (transactionDate.getMonthValue() == previousMonth.getMonthValue() // Print transactions from the previous month and year
+                    && transactionDate.getYear() == previousMonth.getYear()) {
+                System.out.println(transaction);
+            }
+
+        }
     }
 
     // Display transactions from year to date method
     public static void displayYearToDate(ArrayList<Transaction> transactions) {
         System.out.println();
         System.out.println("==== Display Year to Date's Transactions ====");
+
+        // Get today's date
+        LocalDate todayDate = LocalDate.now();
+
+        // Gets the first day of the current year
+        LocalDate startOfYear = LocalDate.now().withDayOfYear(1);
+
+        // Loops through all transactions
+        for (Transaction transaction: transactions) {
+
+            // Gets that transactions date
+            LocalDate transactionsDate = transaction.getLocalDate();
+
+            // If statement to check if the transaction happened between January 1 and today
+            if (!transactionsDate.isBefore(startOfYear)
+                    && !transactionsDate.isAfter(todayDate)) {
+                System.out.println(transaction);
+            }
+        }
     }
 
     // Display transactions from the previous year method
@@ -87,12 +133,38 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Display the Previous Year's Transactions ====");
 
+        // Get the previous year's transactions
+        LocalDate previousYear = LocalDate.now().minusYears(1);
+
+        // Loops through all transactions
+        for (Transaction transaction: transactions) {
+
+            // Gets transactions date
+            LocalDate transactionsDate = transaction.getLocalDate();
+
+            // Check if the transaction occurred in the previous year
+            if (transactionsDate.getYear() == previousYear.getYear()) {
+                System.out.println(transaction);
+            }
+        }
     }
 
     // Search by vendor method
-    public static void searchTransactionsByVendor(ArrayList<Transaction> transactions) {
+    public static void searchTransactionsByVendor(ArrayList<Transaction> transactions, String vendor) {
         System.out.println();
         System.out.println("==== Search Transactions By Vendor ====");
+
+        // Loops through all transactions
+        for (Transaction transaction: transactions) {
+
+            // Gets the vendor name
+            String transactionVendorName = transaction.getVendor();
+
+            // Compare vendor names
+            if (transactionVendorName.equalsIgnoreCase(vendor)) {
+                System.out.println(transaction);
+            }
+        }
     }
 
 }
