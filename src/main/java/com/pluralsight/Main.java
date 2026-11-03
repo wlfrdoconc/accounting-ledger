@@ -16,10 +16,10 @@ public class Main {
         // Empty string to store the user's current choice
         String currentChoice = "";
 
-        // While loop to keep going through
+        // While loop to keep going through the menu until X is entered
         while (!currentChoice.equalsIgnoreCase("X")) {  // Reformat later
             System.out.println();
-            System.out.println("Welcome to the Accounting Ledger Program!");
+            System.out.println("==== Welcome to the Accounting Ledger Program! ====");
             System.out.println("D) Add Deposit");
             System.out.println("P) Make Payment");
             System.out.println("L) Access Ledger");
