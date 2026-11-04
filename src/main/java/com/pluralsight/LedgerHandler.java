@@ -20,6 +20,7 @@ public class LedgerHandler {
             System.out.println("P) Display payments");
             System.out.println("R) Display reports");
             System.out.println("H) Return to the home screen");
+            System.out.print("\nEnter your choice: ");
 
             // Read the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces

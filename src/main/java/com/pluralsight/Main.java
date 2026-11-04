@@ -8,7 +8,22 @@ public class Main {
     public static void main(String[] args) {
 
         // Scanner
+        Scanner read = new Scanner(System.in);
 
+        // Load all transactions from transactions.csv
+        ArrayList<Transaction> transactions = TransactionFileManager.loadTransactions();
+
+        // Start the home screen
+        homeScreen(transactions, read);
+
+        // Close the scanner
+        read.close();
+
+
+        // TO DOs for Wed
+        // customSearchTransactions() - BONUS
+        // Project theme = BONUS
+        // Condense code and formatting
     }
 
     // Displays the main home screen
@@ -26,6 +41,7 @@ public class Main {
             System.out.println("P) Make Payment");
             System.out.println("L) Access Ledger");
             System.out.println("X) Exit the Application");
+            System.out.print("\nEnter your choice: ");
 
             // Read's the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any trailing or leading spaces
@@ -55,9 +71,9 @@ public class Main {
     public static void addDeposit(ArrayList<Transaction> transactions, Scanner read) {
         System.out.println();
         System.out.println("==== Add Deposit ====");
-        System.out.print("Enter description: ");
+        System.out.print("Enter description (Ex. Paycheck, Refund, etc): ");
         String description = read.nextLine();
-        System.out.print("Enter vendor: ");
+        System.out.print("Enter vendor (Ex. Employer, IRS, etc) : ");
         String vendor = read.nextLine();
 
         // Empty amount variable to store user input and for validation
@@ -101,9 +117,9 @@ public class Main {
     public static void makePayment(ArrayList<Transaction> transactions, Scanner read) {
         System.out.println();
         System.out.println("==== Make a Payment ====");
-        System.out.print("Enter description: ");
+        System.out.print("Enter description (Ex. Rent, Utilities, Groceries, etc): ");
         String description = read.nextLine();
-        System.out.print("Enter vendor: ");
+        System.out.print("Enter vendor (Ex. Landlord, Xfinity, Costco, etc): ");
         String vendor = read.nextLine();
 
         // Empty amount variable to store user input and for validation
@@ -112,7 +128,7 @@ public class Main {
 
         // Added while loop and try catch for extra error handling when entering deposit amounts
         while (!isValid) {
-            System.out.print("Enter deposit amount: ");
+            System.out.print("Enter payment amount: ");
             try {
                 amount = Double.parseDouble(read.nextLine());
 

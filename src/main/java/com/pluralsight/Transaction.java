@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter; // Format the time to not display milliseconds
 
 public class Transaction {
     // Variables
@@ -69,17 +70,21 @@ public class Transaction {
         this.amount = amount;
     }
 
+
+    // Time formatter
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     // toString() method for formatting
     @Override // We have @Override here to double-check our work
     public String toString() {
         return String.format("%s | %s | %s | %s | $%.2f",
-                localDate, localTime, description, vendor, amount);
+                localDate, localTime.format(TIME_FORMATTER), description, vendor, amount);
     }
 
     // to CsvString() method formats transaction information for saving to transactions.csv
     public String toCsvString() {
         return String.format("%s|%s|%s|%s|%.2f",
-                localDate, localTime, description, vendor, amount );
+                localDate, localTime.format(TIME_FORMATTER), description, vendor, amount );
     }
 
 }

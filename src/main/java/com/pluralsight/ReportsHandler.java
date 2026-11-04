@@ -22,6 +22,7 @@ public class ReportsHandler {
             System.out.println("4) Display previous year transactions");
             System.out.println("5) Search transactions by vendor");
             System.out.println("6) Custom search"); // BONUS DO LATER
+            System.out.print("\nEnter your choice: ");
 
             // Reads the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
@@ -47,6 +48,7 @@ public class ReportsHandler {
                     break;
                 case "5":
                     // searchTransactionsByVendor() placeholder
+                    System.out.print("Enter vendor name: ");
                     String vendor = read.nextLine().trim();
                     searchTransactionsByVendor(transactions, vendor);
                     break;
@@ -69,6 +71,9 @@ public class ReportsHandler {
         // Get today's date
         LocalDate today = LocalDate.now();
 
+        // Tracks whether any transactions are found
+        boolean found = false;
+
         // Loops through the list of transactions
         for (Transaction transaction: transactions) {
 
@@ -76,9 +81,18 @@ public class ReportsHandler {
             LocalDate transactionDate = transaction.getLocalDate();
 
             // Check if the transaction is within the current month and year, excluding future dates
-            if (transactionDate.getDayOfMonth() == today.getMonthValue() && transactionDate.getYear() == today.getYear() && !transactionDate.isAfter(today)) {
+            if (transactionDate.getMonthValue() == today.getMonthValue()
+                    && transactionDate.getYear() == today.getYear()
+                    && !transactionDate.isAfter(today)) {
+
                 System.out.println(transaction);
+                found = true;
             }
+        }
+
+        // Display a message if no matching transactions were found
+        if (!found) {
+            System.out.println("No transactions found for this month.");
         }
     }
 
@@ -155,6 +169,9 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Search Transactions By Vendor ====");
 
+        // Track whether a matching transaction was found
+        boolean found = false;
+
         // Loops through all transactions
         for (Transaction transaction: transactions) {
 
@@ -162,10 +179,100 @@ public class ReportsHandler {
             String transactionVendorName = transaction.getVendor();
 
             // Compare vendor names
-            if (transactionVendorName.equalsIgnoreCase(vendor)) {
+            if (transactionVendorName.equalsIgnoreCase(vendor.trim())) {
                 System.out.println(transaction);
+                found = true;
             }
+        }
+
+        // Display a message if no matching transactions were found
+        if (!found) {
+            System.out.println("No transactions found for vendor: " + vendor);
         }
     }
 
+    // Custom search - BONUS
+    public static void customTransactionSearch(ArrayList<Transaction> transactions, Scanner read) {
+
+        // Program should let users enter what they want to filter results
+        // Also should give users the ability to skip a condition
+
+        System.out.println();
+        System.out.println("==== Custom Search ====");
+        System.out.print("Enter start date (yyyy-MM-dd): ");
+        String startDate = read.nextLine().trim();
+        System.out.print("Enter end date (yyyy-MM-dd): ");
+        String endDate = read.nextLine().trim();
+        System.out.print("Enter description: ");
+        String description = read.nextLine().trim();
+        System.out.print("Enter vendor: ");
+        String vendor = read.nextLine().trim();
+        System.out.print("Enter amount: ");
+        String amount = read.nextLine().trim();
+
+
+        // Loops through all transactions
+        for (Transaction transaction: transactions) {
+
+            // Checks if the transaction is on or after the start date (skips if blank)
+            if (!startDate.isEmpty()) {
+
+                // Convert the entered start date to LocalDate
+                LocalDate enteredStartDate = LocalDate.parse(startDate);
+
+                // Get the transaction's date
+                LocalDate transactionDate = transaction.getLocalDate();
+
+                // Skips transactions before the entered start date
+                if (transactionDate.isBefore(enteredStartDate)) {
+                    continue;
+                }
+            }
+
+            // Checks if the transaction is on or before the end date (skips if blank)
+            if (!endDate.isEmpty()) {
+
+                // Convert the entered end date to LocalDate
+                LocalDate enteredEndDate = LocalDate.parse(endDate);
+
+                // Get the transaction's date
+                LocalDate transactionDate = transaction.getLocalDate();
+
+                // Skips the transactions after the entered end date
+                if (transactionDate.isAfter(enteredEndDate)) {
+                    continue;
+                }
+                // FOR LATER - HANDLE INVALID DATE INPUTS
+            }
+
+            // Checks if the description matches (skips if blank)
+            if (!description.isEmpty()) {
+                if (!transaction.getDescription().equalsIgnoreCase(description)) {
+                    continue;
+                }
+            }
+
+            // Checks if the vendor matches (skips if blank)
+            if (!vendor.isEmpty()) {
+                if (!transaction.getVendor().equalsIgnoreCase(vendor)) {
+                    continue;
+                }
+            }
+
+            // Checks if the transaction amount matches (skips if blank)
+            if (!amount.isEmpty()) {
+
+                // Convert the entered amount to double
+                double enteredAmount = Double.parseDouble(amount);
+
+                // Skips transactions that don't match the entered amount
+                if (Double.compare(transaction.getAmount(), enteredAmount) != 0) {
+                    continue;
+                }
+            }
+
+            // Display matching transactions
+            System.out.println(transaction);
+        }
+    }
 }
