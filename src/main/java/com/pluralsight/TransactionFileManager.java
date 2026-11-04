@@ -37,7 +37,6 @@ public class TransactionFileManager {
         // Array of the list of transactions created
         ArrayList<Transaction> transactionsList = new ArrayList<>();
 
-
         // Check if transactions.csv exists
         File transactionsFile = new File("transactions.csv");
 

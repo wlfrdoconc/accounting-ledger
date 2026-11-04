@@ -21,7 +21,7 @@ public class Main {
 
 
         // TO DOs for Wed
-        // customSearchTransactions() - BONUS
+        // customSearchTransactions() - BONUS > Finished most, need to catch edge cases
         // Project theme = BONUS
         // Condense code and formatting
     }
@@ -36,12 +36,41 @@ public class Main {
         // While loop to keep going through the menu until X is entered
         while (!currentChoice.equalsIgnoreCase("X")) {  // Reformat later
             System.out.println();
-            System.out.println("==== Welcome to the Accounting Ledger Program! ====");
-            System.out.println("D) Add Deposit");
-            System.out.println("P) Make Payment");
-            System.out.println("L) Access Ledger");
-            System.out.println("X) Exit the Application");
-            System.out.print("\nEnter your choice: ");
+            System.out.println("""
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⣶⡤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠠⣤⣤⣤⣤⣄⡀⣿⣿⣷⣳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣼⣿⣿⣿⣇⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣾⣿⣿⣿⣿⣷⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠉⠛⠿⣿⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣿⣿⡿⠗⠂⠀⠀⠀
+            ⠀⠀⠀⠀⠀⣤⣴⣾⣟⣿⣿⣿⠟⢀⣿⠟⢁⣟⡿⢻⣿⣷⣤⠤⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠉⠙⠛⢟⢹⣽⠙⠦⣨⣋⡴⠚⢋⣇⣾⠟⠋⠉⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⠀⠚⠓⢷⡏⠍⣴⠀⠁⠀⡶⠚⠛⠓⠂⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⠀⠀⠀⣀⡀⢀⡌⡿⡤⡘⠃⢠⡊⠁⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀
+            ⠀⠀⠀⠀⣠⣤⣾⡟⣿⣴⢏⡀⠓⠰⠼⣠⠑⠀⠀⢶⣼⡟⢲⣴⡀⠀⠀⠀⠀
+            ⠀⠀⡖⣭⠓⣿⣾⡏⣿⣿⣦⣵⠀⠀⠀⡆⠀⢠⣶⣿⣿⢩⣼⣿⠘⣥⠒⡄⡄
+            ⠀⣼⡇⣿⡰⡄⣿⡵⣛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⢢⢜⢣⠱⢠⠒⣱⡅
+            ⣼⣿⣿⣸⡗⣷⡘⣷⢋⢶⣛⢿⣿⣿⣿⣿⣿⠿⢋⡴⢋⡌⢂⠧⣘⡣⣡⣿⣿
+
+            ==========================================
+                           AFTERPANEL
+                       MANGA CAFE & LOUNGE
+            ==========================================
+                     Beyond the last panel.
+
+            ------------------------------------------
+                           MAIN MENU
+            ------------------------------------------
+
+            D) Record Sales
+            P) Record Expenses
+            L) View Shop Ledger
+            X) Close Shop
+
+            ==========================================
+            """);
+
+            System.out.print("Enter your choice: ");
 
             // Read's the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any trailing or leading spaces

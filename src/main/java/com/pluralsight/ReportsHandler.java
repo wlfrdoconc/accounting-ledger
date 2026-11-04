@@ -14,15 +14,46 @@ public class ReportsHandler {
 
         // While loop to keep the menu running until 0 is entered by the user
         while (!currentChoice.equals("0")) {
-            System.out.println();
-            System.out.println("==== Reports Menu ====");
-            System.out.println("1) Display month to date transactions");
-            System.out.println("2) Display previous month transactions");
-            System.out.println("3) Display year to date transactions");
-            System.out.println("4) Display previous year transactions");
-            System.out.println("5) Search transactions by vendor");
-            System.out.println("6) Custom search"); // BONUS DO LATER
-            System.out.print("\nEnter your choice: ");
+
+            System.out.println("""
+        
+        Accessing the Afterpanel Reports...
+        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+
+        ⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⡄⠀⠀
+        ⢰⠒⠒⢻⣿⣶⡒⠒⠒⠒⠒⠒⠒⠒⠒⠒⡶⠊⣰⣓⡒⡆
+        ⢸⢸⢻⣭⡙⢿⣿⣍⡉⠉⡇⣯⠉⠉⣩⠋⢀⣔⠕⢫⡇⡇
+        ⢸⢸⣈⡻⣿⣶⣽⡸⣿⣦⡇⣧⠠⠊⣸⢶⠋⢁⡤⠧⡧⡇
+        ⢸⢸⠻⣿⣶⣝⠛⣿⣮⢻⠟⣏⣠⠞⠁⣼⡶⠋⢀⣴⡇⡇
+        ⢸⢸⣿⣶⣍⠻⠼⣮⡕⢁⡤⢿⢁⡴⠊⣸⣵⠞⠋⢠⡇⡇
+        ⢸⢘⣛⡻⣿⣧⢳⣿⣧⠎⢀⣾⠋⡠⠞⢱⢇⣠⡴⠟⡇⡇
+        ⢸⢸⠹⣿⣷⣎⣉⣻⢁⡔⢁⢿⡏⢀⣤⢾⡟⠁⣀⣎⡇⡇
+        ⢸⢸⠲⣶⣭⡛⠚⢿⢋⡔⢁⣼⠟⢋⣠⣼⠖⠋⢁⠎⡇⡇
+        ⢸⢸⢤⣬⣛⠿⠞⣿⢋⠔⣉⣾⠖⠋⢁⣯⡴⠞⢃⠂⡇⡇
+        ⢸⢸⠀⢙⣻⢿⣧⣾⡵⠚⣉⣯⠶⠛⣹⣧⠤⢮⠁⠀⡇⡇
+        ⠸⣘⠢⣄⠙⠿⢷⡡⠖⣋⣽⠥⠒⣩⣟⣤⣔⣁⡤⠖⣃⠇
+        ⠀⠀⠙⠢⢍⣻⡿⠒⢉⣴⣗⣚⣽⣋⣀⣤⣊⠥⠒⠉⠀⠀
+        ⠀⠀⠀⢀⣔⠥⠒⢮⣙⠾⠀⠷⣚⡭⠞⠉⠛⠦⣀⠀⠀⠀
+        ⠀⠀⠀⠉⠀⠀⠀⠀⠈⠑⠒⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
+
+        ==========================================
+                      AFTERPANEL
+                     SHOP REPORTS
+        ==========================================
+                 Every page tells a story.
+
+        1) Month to Date Transactions
+        2) Previous Month Transactions
+        3) Year to Date Transactions
+        4) Previous Year Transactions
+        5) Search Transactions by Vendor
+        6) Custom Search
+
+        ==========================================
+        """);
+
+            System.out.print("Enter your choice: ");
+
 
             // Reads the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
@@ -54,7 +85,7 @@ public class ReportsHandler {
                     break;
                 case "6":
                     // customTransactionSearch() bonus implementation placeholder
-                    System.out.println("PLACEHOLDER for customTransactionSearch()"); // BONUS TO DO
+                    customTransactionSearch(transactions, read);
                 case "0":
                     return; // Go back to the ledger page
                 default:
