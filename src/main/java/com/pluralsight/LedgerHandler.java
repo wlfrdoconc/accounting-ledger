@@ -3,6 +3,8 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static com.pluralsight.Main.displayLoading;
+
 public class LedgerHandler {
 
     // Display the ledger menu
@@ -16,8 +18,6 @@ public class LedgerHandler {
 
             System.out.println("""
         
-        Accessing the Afterpanel Ledger...
-        ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠤⠒⠒⠒⠒⠒⠤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
         ⠀⠀⠀⠀⢀⡲⢋⠝⠋⣛⣳⡄⠀⠀⠀⠀⠀⠀⠉⠓⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -73,6 +73,9 @@ public class LedgerHandler {
                     displayPayments(transactions);
                     break;
                 case "R":
+                    // displayLoading() animation
+                    displayLoading("Accessing the AfterPanel Ledger...");
+
                     // displayReports()
                     ReportsHandler.displayReportsMenu(transactions, read);
                     break;
@@ -88,6 +91,8 @@ public class LedgerHandler {
     public static void displayAll(ArrayList<Transaction> transactions) {
         System.out.println();
         System.out.println("==== All Transactions ====");
+
+        displayTableHeader();
 
         // Checks if there are any transactions
         if (transactions.isEmpty()) {
@@ -106,6 +111,11 @@ public class LedgerHandler {
         System.out.println();
         System.out.println("==== All Deposits ====");
 
+        displayTableHeader();
+
+        // Variable to store the total deposit amount
+        double depositTotal = 0;
+
         // Checks if there are any transactions
         if (transactions.isEmpty()) {
             System.out.println("Transactions not found");
@@ -116,8 +126,15 @@ public class LedgerHandler {
         for (Transaction transaction: transactions) {
             if (transaction.getAmount() > 0) { // Only displays transactions with positive amounts
                 System.out.println(transaction);
+
+                // Add deposit amount to the total
+                depositTotal += transaction.getAmount();
             }
         }
+
+        // Display the total deposits
+        System.out.printf("%nTotal Deposits: $%.2f%n", depositTotal);
+        System.out.println("-".repeat(93));
 
     }
 
@@ -125,6 +142,11 @@ public class LedgerHandler {
     public static void displayPayments(ArrayList<Transaction> transactions) {
         System.out.println();
         System.out.println("==== All Payments ====");
+
+        displayTableHeader();
+
+        // Variable to store the total payment amount
+        double paymentTotal = 0;
 
         // Checks if there are any transactions
         if (transactions.isEmpty()) {
@@ -136,7 +158,25 @@ public class LedgerHandler {
         for (Transaction transaction: transactions) {
             if (transaction.getAmount() < 0) {
                 System.out.println(transaction);
+
+                // Add payment amount to the total
+                paymentTotal += transaction.getAmount();
             }
         }
+
+        // Display the total payments
+        System.out.printf("%nTotal Payments: -$%.2f%n", Math.abs(paymentTotal));
+        System.out.println("-".repeat(93));
+    }
+
+    // Reusable table header display for transactions
+    public static void displayTableHeader() {
+
+        System.out.println("-".repeat(93));
+
+        System.out.printf("%-12s %-10s %-30s %-25s %12s%n",
+                "Date", "Time", "Description", "Vendor", "Amount");
+
+        System.out.println("-".repeat(93));
     }
 }

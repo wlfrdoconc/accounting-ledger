@@ -72,19 +72,38 @@ public class Transaction {
 
 
     // Time formatter
-    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
 
     // toString() method for formatting
     @Override // We have @Override here to double-check our work
     public String toString() {
-        return String.format("%s | %s | %s | %s | $%.2f",
-                localDate, localTime.format(TIME_FORMATTER), description, vendor, amount);
+
+        // Format the amount with the negative sign before the dollar sign
+        String formattedAmount = String.format(
+                "%s$%.2f",
+                amount < 0 ? "-" : "",
+                Math.abs(amount)
+        );
+
+        // Display transactions in aligned columns
+        return String.format("%-12s %-10s %-30s %-25s %12s",
+                localDate,
+                localTime.format(TIME_FORMATTER),
+                description,
+                vendor,
+                formattedAmount);
     }
 
     // to CsvString() method formats transaction information for saving to transactions.csv
+    // Format transaction information for saving to transactions.csv
+    // Formats transaction information for saving to transactions.csv
     public String toCsvString() {
         return String.format("%s|%s|%s|%s|%.2f",
-                localDate, localTime.format(TIME_FORMATTER), description, vendor, amount );
+                localDate,
+                localTime.withNano(0),
+                description,
+                vendor,
+                amount);
     }
 
 }
