@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 
 public class TransactionFileManager {
@@ -84,6 +85,11 @@ public class TransactionFileManager {
         catch (IOException e) {
             System.out.println("Error loading transactions: " + e.getMessage());
         }
+
+        // Use Java in-built .sort() ArrayList method to sort transactions from newest to oldest
+        transactionsList.sort(Comparator.comparing(Transaction::getLocalDate).
+                thenComparing(Transaction::getLocalTime).reversed());
+
         return transactionsList;
     }
 }
