@@ -46,6 +46,7 @@ public class ReportsHandler {
         4) Previous Year Transactions
         5) Search Transactions by Vendor
         6) Custom Search
+        0) Go back to Ledger
 
         ==========================================
         """);
