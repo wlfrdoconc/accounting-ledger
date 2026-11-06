@@ -1,4 +1,108 @@
 package com.pluralsight;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter; // Format the time to not display milliseconds
+
 public class Transaction {
+    // Variables
+    private LocalDate localDate;
+    private LocalTime localTime;
+    private String description;
+    private String vendor;
+    private double amount;
+
+    // Constructors
+
+    // Parameterless Constructor
+    public Transaction() {
+
+    }
+
+    // Parameterized Constructor
+    public Transaction(LocalDate localDate, LocalTime localTime, String description, String vendor, double amount) {
+        this.localDate = localDate;
+        this.localTime = localTime;
+        this.description = description;
+        this.vendor = vendor;
+        this.amount = amount;
+    }
+
+
+    // Getters and Setters
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(String vendor) {
+        this.vendor = vendor;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+
+    // Time formatter
+    private static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
+
+    // toString() method for formatting
+    @Override // We have @Override here to double-check our work
+    public String toString() {
+
+        // Format the amount with the negative sign before the dollar sign
+        String formattedAmount = String.format(
+                "%s$%.2f",
+                amount < 0 ? "-" : "",
+                Math.abs(amount)
+        );
+
+        // Display transactions in aligned columns
+        return String.format("%-12s %-10s %-30s %-25s %12s",
+                localDate,
+                localTime.format(TIME_FORMATTER),
+                description,
+                vendor,
+                formattedAmount);
+    }
+
+    // to CsvString() method formats transaction information for saving to transactions.csv
+    // Format transaction information for saving to transactions.csv
+    // Formats transaction information for saving to transactions.csv
+    public String toCsvString() {
+        return String.format("%s|%s|%s|%s|%.2f",
+                localDate,
+                localTime.withNano(0),
+                description,
+                vendor,
+                amount);
+    }
 }
