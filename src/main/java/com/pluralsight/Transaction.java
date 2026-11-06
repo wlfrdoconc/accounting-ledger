@@ -105,5 +105,4 @@ public class Transaction {
                 vendor,
                 amount);
     }
-
 }
