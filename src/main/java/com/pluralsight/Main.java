@@ -6,7 +6,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-
         // Scanner
         Scanner read = new Scanner(System.in);
 
@@ -18,12 +17,6 @@ public class Main {
 
         // Close the scanner
         read.close();
-
-
-        // TO DOs for Wed
-        // customSearchTransactions() - BONUS > Finished most, need to catch edge cases
-        // Project theme = BONUS
-        // Condense code and formatting
     }
 
     // Displays the main home screen
@@ -75,7 +68,7 @@ public class Main {
         ==========================================
         """);
 
-            System.out.print("Enter your choice: ");
+            System.out.print("Enter your choice (D, P, L, X): ");
 
             // Read's the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any trailing or leading spaces

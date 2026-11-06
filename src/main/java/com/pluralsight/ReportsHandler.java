@@ -88,7 +88,7 @@ public class ReportsHandler {
                 case "0":
                     return; // Go back to the ledger page
                 default:
-                    System.out.println("Please enter 1, 2, 3, 4, 5, 6, or 0.");
+                    System.out.println("Please enter choice from 0-6.");
             }
         }
     }
@@ -228,9 +228,9 @@ public class ReportsHandler {
         // Also should give users the ability to skip a condition
 
         System.out.println();
-        System.out.println("==== Custom Search ====");
+        System.out.println("==== Custom Search (Press Space to Skip Filter) ====");
         System.out.print("Enter start date (yyyy-MM-dd): ");
-        String startDate = read.nextLine().trim();
+        String startDate = read.nextLine().trim(); // Pressing space be skipped because of the .trim() method
         System.out.print("Enter end date (yyyy-MM-dd): ");
         String endDate = read.nextLine().trim();
         System.out.print("Enter description: ");
@@ -240,6 +240,12 @@ public class ReportsHandler {
         System.out.print("Enter amount: ");
         String amount = read.nextLine().trim();
 
+
+        // Boolean variable to handle cases where there are no matching custom results
+        boolean found = false;
+
+        double totalRevenue = 0; // Stores total revenue
+        double totalExpenses = 0; // Stores total expenses
 
         // Loops through all transactions
         for (Transaction transaction: transactions) {
@@ -301,8 +307,37 @@ public class ReportsHandler {
                 }
             }
 
+            // Calculate the total revenue and expenses after all custom searches passed through
+            if (transaction.getAmount() > 0) {
+                totalRevenue += transaction.getAmount();
+            } else {
+                totalExpenses += Math.abs(transaction.getAmount());
+            }
+
             // Display matching transactions
             System.out.println(transaction);
+            found = true;
+        }
+
+        // Display results and financial summary
+        if (!found) {
+            System.out.println("No matching transactions found.");
+        } else {
+            double netIncome = totalRevenue - totalExpenses;
+            displayFinancialSummary(totalRevenue, totalExpenses, netIncome);
         }
     }
+
+    public static void displayFinancialSummary(
+            double revenue,
+            double expenses,
+            double netIncome) {
+
+        System.out.println("----------------------------------------");
+        System.out.printf("Total Revenue: $%,.2f%n", revenue);
+        System.out.printf("Total Expenses: $%,.2f%n", expenses);
+        System.out.printf("Net Income: $%,.2f%n", netIncome);
+        System.out.println("----------------------------------------");
+    }
+
 }
