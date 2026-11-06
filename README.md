@@ -22,7 +22,7 @@ transactionsList.sort(Comparator.comparing(Transaction::getLocalDate)
 
 This keeps the ledger organized without requiring users to manually sort entries. It also gave me practice using method references and chaining comparators to control how objects are ordered.
 
-## UML Diagram
+## UML Diagram Class Architecture 
 
 ![AfterPanel Accounting Ledger](images/afterpanel-accounting-ledger.png)
 
