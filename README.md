@@ -10,6 +10,8 @@ Each transaction stores the date, time, description, vendor, and amount, and is 
 
 To match the café theme, I also customized the project with ASCII art, loading animations, and formatted transaction tables. I also added separate ledger views, report filters, and a custom search feature.
 
+---
+
 ## Interesting Piece of Code
 One part of the project I found interesting was **sorting transactions from newest to oldest** in `TransactionFileManager.java`. When transactions are loaded from the CSV file, I use Java's `Comparator.comparing()` to sort by date and `thenComparing()` to sort by time when two transactions share the same date. By default, this sorts from oldest to newest, so I added `reversed()` to display the most recent transactions first.
 
@@ -22,10 +24,13 @@ transactionsList.sort(Comparator.comparing(Transaction::getLocalDate)
 
 This keeps the ledger organized without requiring users to manually sort entries. It also gave me practice using method references and chaining comparators to control how objects are ordered.
 
+---
+
 ## UML Diagram
 
 ![AfterPanel Accounting Ledger](images/afterpanel-accounting-ledger.png)
 
+---
 
 ## File Structure
 ```text
@@ -40,6 +45,7 @@ transactions.csv
 README.md
 ```
 
+---
 
 ## Screenshots
 
