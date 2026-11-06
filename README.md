@@ -1,9 +1,11 @@
 # AfterPanel Manga Cafe & Lounge
 
 ## Description
-AfterPanel Manga Cafe & Lounge is a Java command-line accounting ledger built around a fictional manga café. The application allows users to record sales and expenses, track financial activity, and review transactions through a simple menu-driven interface. Every transaction includes a date, time, description, vendor, and amount, and is saved to `transactions.csv` so records can be loaded again when the program starts.
+AfterPanel Manga Cafe & Lounge is an accounting ledger app built in Java for a fictional manga café. This program lets users record deposits and payments, keep track of financial activity, and review past transactions through a simple command-line interface.
 
-The project also includes separate ledger views for deposits and payments, date-based reports, and a custom search that filters transactions by multiple fields. To fit the café theme, I customized the menus with ASCII artwork, loading animations, and formatted transaction tables.
+Each transaction stores the date, time, description, vendor, and amount, and is saved into a `transactions.csv` file so the data can be loaded again when the program starts.
+
+To match the café theme, I also customized the project with ASCII art, loading animations, and formatted transaction tables. I also added separate ledger views, report filters, and a custom search feature.
 
 ## Interesting Piece of Code
 One part of the project I found interesting was **sorting transactions from newest to oldest** in `TransactionFileManager.java`. When transactions are loaded from the CSV file, I use Java's `Comparator.comparing()` to sort by date and `thenComparing()` to sort by time when two transactions share the same date. By default, this sorts from oldest to newest, so I added `reversed()` to display the most recent transactions first.
@@ -18,9 +20,9 @@ transactionsList.sort(Comparator.comparing(Transaction::getLocalDate)
 This keeps the ledger organized without requiring users to manually sort entries. It also gave me practice using method references and chaining comparators to control how objects are ordered.
 
 ## UML Diagram
-```
 
-```
+![AfterPanel Accounting Ledger](images/afterpanel-accounting-ledger.png)
+
 
 ## File Structure
 ```text
@@ -39,10 +41,16 @@ README.md
 ## Screenshots
 
 ### Home Screen
-![AfterPanel home screen](screenshots/home-screen.png)
+![AfterPanel home screen](images/home-screen.png)
 
-### Shop Ledger
-![AfterPanel transaction ledger](screenshots/ledger.png)
+### Ledger Screen
+![AfterPanel transaction ledger](images/ledger-screen.png)
 
-### Reports & Custom Search
-![AfterPanel reports and custom search](screenshots/reports.png)
+### Reports Screen
+![AfterPanel reports screen](images/reports-screen.png)
+
+### Display Example (Deposits)
+![AfterPanel deposits example](images/deposits-example.png)
+
+### Reports (Custom Search)
+![AfterPanel custom search](images/report-example-custom.png)
