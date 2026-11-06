@@ -71,10 +71,31 @@ public class Main {
     public static void addDeposit(ArrayList<Transaction> transactions, Scanner read) {
         System.out.println();
         System.out.println("==== Add Deposit ====");
-        System.out.print("Enter description (Ex. Paycheck, Refund, etc): ");
-        String description = read.nextLine();
-        System.out.print("Enter vendor (Ex. Employer, IRS, etc) : ");
-        String vendor = read.nextLine();
+
+        // Validate description to check if the user enters an empty input
+        String description = "";
+
+        // Check using the .isBlank() method
+        while (description.isBlank()) {
+            System.out.print("Enter description (Ex. Paycheck, Refund, etc): ");
+            description = read.nextLine();
+
+            if (description.isBlank()) {
+                System.out.println("Description cannot be empty.");
+            }
+        }
+
+        // Validate vendor to check if the user enters an empty input
+        String vendor = "";
+
+        while (vendor.isBlank()) {
+            System.out.print("Enter vendor (Ex. Employer, IRS, etc) : ");
+            vendor = read.nextLine();
+
+            if (vendor.isBlank()) {
+                System.out.println("Vendor cannot be empty.");
+            }
+        }
 
         // Empty amount variable to store user input and for validation
         double amount = 0;
