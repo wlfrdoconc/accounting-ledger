@@ -3,8 +3,6 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static com.pluralsight.Main.displayLoading;
-
 public class LedgerHandler {
 
     // Display the ledger menu
@@ -16,44 +14,8 @@ public class LedgerHandler {
         // While loop to keep going through the menu until H is entered
         while (!currentChoice.equalsIgnoreCase("H")) {
 
-            System.out.println("""
-        
-
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⠤⠒⠒⠒⠒⠒⠤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⢀⡲⢋⠝⠋⣛⣳⡄⠀⠀⠀⠀⠀⠀⠉⠓⢄⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⢀⠠⣴⠗⢀⠥⠂⢁⠤⠤⠤⠁⠀⠀⠀⠀⠀⠀⠀⠀⣛⠛⠉⠗⠒⠲⢤⣀⠀
-        ⠰⠃⠐⠀⠋⡠⠀⠮⠤⠤⠤⠤⡤⡄⠀⠀⠀⠀⠀⠀⢠⣽⠄⠀⠀⠀⠀⠀⢸⡆
-        ⠀⠜⠀⠀⠈⠀⢠⣤⣔⣒⡒⠒⠂⠁⠀⡀⢀⣀⣤⣶⣿⡟⠀⠀⠀⠀⠀⢀⡼⠀
-        ⠈⠀⠀⠀⠀⣰⡿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟⠉⠁⠀⠀⠀⢄⡴⠋⠀⠀
-        ⠀⠀⠀⠀⣰⠋⠀⠀⠀⠈⠙⠛⠛⠛⠛⠋⠉⠀⠀⠀⠀⢀⣠⣴⡊⠁⠀⠀⠀⠀
-        ⠀⡠⠐⠉⢸⣶⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⣤⣶⣿⣿⣿⡻⡄⠀⠀⠀⠀
-        ⠀⠁⠀⠀⣿⢹⣿⣿⣿⣶⣦⣶⣶⣶⣶⣶⣙⠋⠴⠛⣿⢛⡿⠬⠃⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠈⠘⠹⣿⣿⠛⠛⠛⢿⡇⠀⠉⠀⠘⠉⢰⣯⡊⠙⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠈⠱⡄⠀⠀⠘⠃⠀⠀⠀⠀⠠⠛⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⢲⣄⠀⠒⠂⠀⣀⢴⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⣀⣀⣀⣀⣈⠀⢻⣿⣶⣴⣾⡟⢸⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⢀⡎⠀⢀⣠⡤⠂⢠⠈⢿⣿⡿⣿⠃⠀⠙⣀⣀⣀⡀⠀⠙⣄⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⢠⠉⠉⢇⠀⠈⡇⠘⣏⠀⡿⡰⠀⠀⢀⠛⠛⠻⣆⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⢸⠉⠉⠉⠗⠒⢿⡀⠸⡈⣠⠧⠞⠉⡏⠉⠉⠉⢹⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀⠁⠀⠉⠉⠀⠀⠈⠀⠀⠀⠀⠸⠀⠀⠀⠀⠀⠀
-
-        ==========================================
-                      AFTERPANEL
-                     SHOP LEDGER
-        ==========================================
-                   Every yen counts.
-
-        A) All Transactions
-        D) Deposits
-        P) Payments
-        R) Reports
-        H) Back to Home
-
-        ==========================================
-        """);
-
-            System.out.print("Enter your choice (A, D, P, R, H): ");
-
+            // Display the ledger menu from the DisplayHelper class
+            DisplayHelper.displayLedgerMenu();
 
             // Read the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
@@ -74,7 +36,7 @@ public class LedgerHandler {
                     break;
                 case "R":
                     // displayLoading() animation
-                    displayLoading("Accessing the AfterPanel Ledger...");
+                    DisplayHelper.displayLoading("Accessing the AfterPanel Ledger...");
 
                     // displayReports()
                     ReportsHandler.displayReportsMenu(transactions, read);
@@ -92,7 +54,7 @@ public class LedgerHandler {
         System.out.println();
         System.out.println("==== All Transactions ====");
 
-        displayTableHeader();
+        DisplayHelper.displayTableHeader();
 
         // Checks if there are any transactions
         if (transactions.isEmpty()) {
@@ -111,7 +73,7 @@ public class LedgerHandler {
         System.out.println();
         System.out.println("==== All Deposits ====");
 
-        displayTableHeader();
+        DisplayHelper.displayTableHeader();
 
         // Variable to store the total deposit amount
         double depositTotal = 0;
@@ -143,7 +105,7 @@ public class LedgerHandler {
         System.out.println();
         System.out.println("==== All Payments ====");
 
-        displayTableHeader();
+        DisplayHelper.displayTableHeader();
 
         // Variable to store the total payment amount
         double paymentTotal = 0;
@@ -166,17 +128,6 @@ public class LedgerHandler {
 
         // Display the total payments
         System.out.printf("%nTotal Payments: -$%.2f%n", Math.abs(paymentTotal));
-        System.out.println("-".repeat(93));
-    }
-
-    // Reusable table header display for transactions
-    public static void displayTableHeader() {
-
-        System.out.println("-".repeat(93));
-
-        System.out.printf("%-12s %-10s %-30s %-25s %12s%n",
-                "Date", "Time", "Description", "Vendor", "Amount");
-
         System.out.println("-".repeat(93));
     }
 }

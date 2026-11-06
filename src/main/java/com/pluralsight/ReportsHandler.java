@@ -15,50 +15,13 @@ public class ReportsHandler {
         // While loop to keep the menu running until 0 is entered by the user
         while (!currentChoice.equals("0")) {
 
-            System.out.println("""
-        
-
-        ⠀⠀⠀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡠⡄⠀⠀
-        ⢰⠒⠒⢻⣿⣶⡒⠒⠒⠒⠒⠒⠒⠒⠒⠒⡶⠊⣰⣓⡒⡆
-        ⢸⢸⢻⣭⡙⢿⣿⣍⡉⠉⡇⣯⠉⠉⣩⠋⢀⣔⠕⢫⡇⡇
-        ⢸⢸⣈⡻⣿⣶⣽⡸⣿⣦⡇⣧⠠⠊⣸⢶⠋⢁⡤⠧⡧⡇
-        ⢸⢸⠻⣿⣶⣝⠛⣿⣮⢻⠟⣏⣠⠞⠁⣼⡶⠋⢀⣴⡇⡇
-        ⢸⢸⣿⣶⣍⠻⠼⣮⡕⢁⡤⢿⢁⡴⠊⣸⣵⠞⠋⢠⡇⡇
-        ⢸⢘⣛⡻⣿⣧⢳⣿⣧⠎⢀⣾⠋⡠⠞⢱⢇⣠⡴⠟⡇⡇
-        ⢸⢸⠹⣿⣷⣎⣉⣻⢁⡔⢁⢿⡏⢀⣤⢾⡟⠁⣀⣎⡇⡇
-        ⢸⢸⠲⣶⣭⡛⠚⢿⢋⡔⢁⣼⠟⢋⣠⣼⠖⠋⢁⠎⡇⡇
-        ⢸⢸⢤⣬⣛⠿⠞⣿⢋⠔⣉⣾⠖⠋⢁⣯⡴⠞⢃⠂⡇⡇
-        ⢸⢸⠀⢙⣻⢿⣧⣾⡵⠚⣉⣯⠶⠛⣹⣧⠤⢮⠁⠀⡇⡇
-        ⠸⣘⠢⣄⠙⠿⢷⡡⠖⣋⣽⠥⠒⣩⣟⣤⣔⣁⡤⠖⣃⠇
-        ⠀⠀⠙⠢⢍⣻⡿⠒⢉⣴⣗⣚⣽⣋⣀⣤⣊⠥⠒⠉⠀⠀
-        ⠀⠀⠀⢀⣔⠥⠒⢮⣙⠾⠀⠷⣚⡭⠞⠉⠛⠦⣀⠀⠀⠀
-        ⠀⠀⠀⠉⠀⠀⠀⠀⠈⠑⠒⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-        ==========================================
-                      AFTERPANEL
-                     SHOP REPORTS
-        ==========================================
-                 Every page tells a story.
-
-        1) Month to Date Transactions
-        2) Previous Month Transactions
-        3) Year to Date Transactions
-        4) Previous Year Transactions
-        5) Search Transactions by Vendor
-        6) Custom Search
-        0) Go back to Ledger
-
-        ==========================================
-        """);
-
-            System.out.print("Enter your choice: ");
-
+            // Displays the reports menu from the DisplayHelper class
+            DisplayHelper.displayReportsMenu();
 
             // Reads the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any leading or trailing spaces
 
             // Calls the corresponding method based on the user's menu selection
-
             switch (currentChoice) {
                 case "1":
                     // displayMonthToDate() placeholder
@@ -85,6 +48,7 @@ public class ReportsHandler {
                 case "6":
                     // customTransactionSearch() bonus implementation placeholder
                     customTransactionSearch(transactions, read);
+                    break;
                 case "0":
                     return; // Go back to the ledger page
                 default:

@@ -24,51 +24,18 @@ public class Main {
     public static void homeScreen(ArrayList<Transaction> transactions, Scanner read) {
 
         // Display loading animation
-        displayLoading("Accessing the AfterPanel home screen...");
+        DisplayHelper.displayLoading("Accessing the AfterPanel home screen...");
 
-        // Display the AfterPanel logo and title once
-        System.out.println("""
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣷⣶⡤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠠⣤⣤⣤⣤⣄⡀⣿⣿⣷⣳⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⣿⣼⣿⣿⣿⣇⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣿⣿⣾⣿⣿⣿⣿⣷⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⢀⣤⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠉⠛⠿⣿⣿⣿⣿⣿⣿⣿⣻⣿⣿⣿⣿⣿⣿⣿⡿⠗⠂⠀⠀⠀
-        ⠀⠀⠀⠀⠀⣤⣴⣾⣟⣿⣿⠟⢀⣿⠟⢁⣟⡿⢻⣿⣷⣤⠤⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠉⠙⠛⢟⢹⣽⠙⠦⣨⣋⡴⠚⢋⣇⣾⠟⠋⠉⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⠀⠚⠓⢷⡏⠍⣴⠀⠁⠀⡶⠚⠛⠓⠂⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⠀⠀⠀⣀⡀⢀⡌⡿⡤⡘⠃⢠⡊⠁⠀⣀⠀⠀⠀⠀⠀⠀⠀⠀
-        ⠀⠀⠀⠀⣠⣤⣾⡟⣿⣴⢏⡀⠓⠰⠼⣠⠑⠀⠀⢶⣼⡟⢲⣴⡀⠀⠀⠀⠀
-        ⠀⠀⡖⣭⠓⣿⣾⡏⣿⣿⣦⣵⠀⠀⠀⡆⠀⢠⣶⣿⣿⢩⣼⣿⠘⣥⠒⡄⡄
-        ⠀⣼⡇⣿⡰⡄⣿⡵⣛⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⢢⢜⢣⠱⢠⠒⣱⡅
-        ⣼⣿⣿⣸⡗⣷⡘⣷⢋⢶⣛⢿⣿⣿⣿⣿⣿⠿⢋⡴⢋⡌⢂⠧⣘⡣⣡⣿⣿
-
-        ==========================================
-                       AFTERPANEL
-                   MANGA CAFE & LOUNGE
-        ==========================================
-                 Beyond the last panel.
-        """);
+        // Display the welcome screen
+        DisplayHelper.displayWelcomeScreen();
 
         // Empty string to store the user's current choice
         String currentChoice = "";
 
         // While loop to keep going through the menu until X is entered
         while (!currentChoice.equalsIgnoreCase("X")) {  // Reformat later
-            System.out.println("""
-        ------------------------------------------
-                       MAIN MENU
-        ------------------------------------------
 
-        D) Record Sales
-        P) Record Expenses
-        L) View Shop Ledger
-        X) Close Shop
-
-        ==========================================
-        """);
-
-            System.out.print("Enter your choice (D, P, L, X): ");
+            DisplayHelper.displayHomeMenu();
 
             // Read's the user's entered selection
             currentChoice = read.nextLine().trim(); // Removes any trailing or leading spaces
@@ -85,14 +52,14 @@ public class Main {
                     break;
                 case "L":
                     // displayLoading() animation
-                    displayLoading("Accessing the AfterPanel Ledger...");
+                    DisplayHelper.displayLoading("Accessing the AfterPanel Ledger...");
                     // displayLedgerMenu() placeholder -> call from LedgerHandler class
                     // LedgerHandler.displayLedgerMenu(transactions, read)
                     LedgerHandler.displayLedgerMenu(transactions, read);
                     break;
                 case "X":
-                    displayLoading("Exiting the program...");
-                    displayExitScreen();
+                    DisplayHelper.displayLoading("Exiting the program...");
+                    DisplayHelper.displayExitScreen();
                     return;
                 default:
                     System.out.println("Please enter D, P, L, or X.");
@@ -192,63 +159,5 @@ public class Main {
         } else {
             System.out.println("Failed to save payment.");
         }
-    }
-
-    // Displays a loading animation when navigating between menus
-    public static void displayLoading(String message) {
-
-        System.out.println();
-        System.out.println(message);
-
-        // Display loading animation
-        for (int i = 0; i < 10; i++) {
-            System.out.print("▓▓▓");
-
-            try {
-                Thread.sleep(150);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                return;
-            }
-        }
-
-        System.out.println();
-    }
-
-    // Displays the farewell screen when closing the shop
-    public static void displayExitScreen() {
-
-        System.out.println();
-        System.out.println("""
-            ⠀⠀⠀⠀⠀⢸⠓⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⠀⠀⢸⠀⠀⠑⢤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⠀⠀⢸⡆⠀⠀⠀⠙⢤⡷⣤⣦⣀⠤⠖⠚⡿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⣠⡿⠢⢄⡀⠀⡇⠀⠀⠀⠀⠀⠉⠀⠀⠀⠀⠀⠸⠷⣶⠂⠀⠀⠀⣀⣀⠀⠀⠀
-            ⢸⣃⠀⠀⠉⠳⣷⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⢉⡭⠋
-            ⠀⠘⣆⠀⠀⠀⠁⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠀⠀
-            ⠀⠀⠘⣦⠆⠀⠀⢀⡎⢹⡀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠀⠀⡀⣠⠔⠋⠀⠀⠀⠀
-            ⠀⠀⠀⡏⠀⠀⣆⠘⣄⠸⢧⠀⠀⠀⠀⢀⣠⠖⢻⠀⠀⠀⣿⢥⣄⣀⣀⣀⠀⠀
-            ⠀⠀⢸⠁⠀⠀⡏⢣⣌⠙⠚⠀⠀⠠⣖⡛⠀⣠⠏⠀⠀⠀⠇⠀⠀⠀⠀⢙⣣⠄
-            ⠀⠀⢸⡀⠀⠀⠳⡞⠈⢻⠶⠤⣄⣀⣈⣉⣉⣡⡔⠀⠀⢀⠀⠀⣀⡤⠖⠚⠀⠀
-            ⠀⠀⡼⣇⠀⠀⠀⠙⠦⣞⡀⠀⢀⡏⠀⢸⣣⠞⠀⠀⠀⡼⠚⠋⠁⠀⠀⠀⠀⠀
-            ⠀⢰⡇⠙⠀⠀⠀⠀⠀⠀⠉⠙⠚⠒⠚⠉⠀⠀⠀⠀⡼⠁⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⢧⡀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⠙⣶⣶⣿⠢⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⠀⠀⠉⠀⠀⠀⠙⢿⣳⠞⠳⡄⠀⠀⠀⢀⡞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-            ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⠹⣄⣀⡤⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-
-            ==========================================
-                           AFTERPANEL
-                       MANGA CAFE & LOUNGE
-            ==========================================
-
-                     Thanks for stopping by!
-
-                   See you in the next chapter.
-
-                           またね! ✦
-
-            ==========================================
-            """);
     }
 }

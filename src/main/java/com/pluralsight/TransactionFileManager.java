@@ -12,17 +12,13 @@ public class TransactionFileManager {
 
     // Saves the user's entered transaction to transactions.csv
     public static boolean saveTransaction(Transaction transaction) {
-
         // Try/Catch to handle validation
         try (BufferedWriter writer = new BufferedWriter(
                 new FileWriter("transactions.csv", true))) {
-
             // Write the formatted String to transactions.csv using toCsvString()
             writer.write(transaction.toCsvString());
-
             // Move to the next line
             writer.newLine();
-
         }
         catch (IOException e) {
             System.out.println("Error saving transaction: " + e.getMessage());
