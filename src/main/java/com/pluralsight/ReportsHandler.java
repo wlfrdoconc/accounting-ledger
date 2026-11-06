@@ -62,6 +62,9 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Display Month to Date's Transactions ====");
 
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
+
         // Get today's date
         LocalDate today = LocalDate.now();
 
@@ -95,6 +98,9 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Display Previous Month's Transactions ====");
 
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
+
         // Get the previous month's transactions
         LocalDate previousMonth = LocalDate.now().minusMonths(1);
 
@@ -116,6 +122,9 @@ public class ReportsHandler {
     public static void displayYearToDate(ArrayList<Transaction> transactions) {
         System.out.println();
         System.out.println("==== Display Year to Date's Transactions ====");
+
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
 
         // Get today's date
         LocalDate todayDate = LocalDate.now();
@@ -142,6 +151,9 @@ public class ReportsHandler {
         System.out.println();
         System.out.println("==== Display the Previous Year's Transactions ====");
 
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
+
         // Get the previous year's transactions
         LocalDate previousYear = LocalDate.now().minusYears(1);
 
@@ -162,6 +174,9 @@ public class ReportsHandler {
     public static void searchTransactionsByVendor(ArrayList<Transaction> transactions, String vendor) {
         System.out.println();
         System.out.println("==== Search Transactions By Vendor ====");
+
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
 
         // Track whether a matching transaction was found
         boolean found = false;
@@ -210,6 +225,9 @@ public class ReportsHandler {
 
         double totalRevenue = 0; // Stores total revenue
         double totalExpenses = 0; // Stores total expenses
+
+        // Header to display above transactions
+        DisplayHelper.displayTableHeader();
 
         // Loops through all transactions
         for (Transaction transaction: transactions) {
