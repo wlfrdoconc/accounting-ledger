@@ -82,6 +82,10 @@ public class TransactionFileManager {
             System.out.println("Error loading transactions: " + e.getMessage());
         }
 
+        // Interesting piece of code
+        // Researched how to reverse the order of a list from oldest to newest
+        // Sort transactions by date and time, then reverse the order
+
         // Use Java in-built .sort() ArrayList method to sort transactions from newest to oldest
         transactionsList.sort(Comparator.comparing(Transaction::getLocalDate).
                 thenComparing(Transaction::getLocalTime).reversed());
