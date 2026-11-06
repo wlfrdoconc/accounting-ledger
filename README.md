@@ -1,5 +1,8 @@
 # AfterPanel Manga Cafe & Lounge
 
+> Capstone 1: Accounting Ledger Application  
+> Year Up United | Technical Academy Fall 2026
+
 ## Description
 AfterPanel Manga Cafe & Lounge is an accounting ledger app built in Java for a fictional manga café. This program lets users record deposits and payments, keep track of financial activity, and review past transactions through a simple command-line interface.
 
@@ -54,3 +57,6 @@ README.md
 
 ### Reports (Custom Search)
 ![AfterPanel custom search](images/report-example-custom.png)
+
+### CSV File Example
+![AfterPanel CSV Example screen](images/csv-file-example.png)
